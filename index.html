@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>최아들메시지</title>
+<title>엄도움배경</title>
 <style>
   body, html {
     margin: 0;
@@ -15,72 +15,124 @@
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 216.6%; /* 이미지의 높이/너비 비율에 맞춤 */
-    background-image: url('최아들문자함.png'); /* 초기 배경 이미지 경로 */
+    padding-bottom: 216.6%; /* 이미지의 높이/너비 비율에 맞춤, 예: 2532/1170 */
+    background-image: url('엄도움배경.PNG'); /* 배경 이미지 경로 */
     background-size: cover;
     background-position: center;
   }
-  .button, .backButton {
+  .button {
     position: absolute;
     background-color: transparent; /* 투명한 배경 */
     border: none; /* 테두리 없음 */
     cursor: pointer;
+    width: calc(160 / 1170 * 100%);
+    height: calc(160 / 2532 * 100%);
   }
-  .button {
-    width: calc(300 / 1170 * 100%);
-    height: calc(75 / 2532 * 100%);
-  }
-  .button1 { top: calc(477 / 2532 * 100%); left: calc(78 / 1170 * 100%); }
-  .button2 { top: calc(720 / 2532 * 100%); left: calc(78 / 1170 * 100%); }
+
+  .button1 {
+  top: calc(237 / 2532 * 100%);
+  left: calc(99 / 1170 * 100%);
+}
+
+.button2 {
+  top: calc(237 / 2532 * 100%);
+  left: calc(369 / 1170 * 100%);
+}
+
+.button3 {
+  top: calc(2271 / 2532 * 100%);
+  left: calc(99 / 1170 * 100%);
+}
+
+.button4 {
+  top: calc(2271 / 2532 * 100%);
+  left: calc(369 / 1170 * 100%);
+}
 
   .backButton {
+    position: absolute;
     width: calc(50 / 1170 * 100%);
     height: calc(50 / 2532 * 100%);
     top: calc(165 / 2532 * 100%);
     left: calc(25 / 1170 * 100%);
-    display: none; /* Initially hide back buttons */
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer;
+    display: none; /* Initially hidden */
   }
 
   @media (max-width: 768px) {
     .background {
-      padding-bottom: 216.6%; /* 모바일에서도 배경 이미지 비율 유지 */
+      padding-bottom: 216.6%;
     }
     .button {
-      /* 모바일 화면에서 버튼 크기 비율 조정 */
-      width: 15%;
-      height: calc(75 / 768 * 100%);
     }
     .backButton {
-      width: calc(50 / 768 * 100%);
-      height: calc(50 / 768 * 100%);
     }
+
+    @keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: scale(0.5); /* 시작 시 50% 크기 */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1); /* 종료 시 원래 크기 */
+  }
+}
+
+.fadeIn {
+  animation: fadeInAnimation 1s ease-out forwards;
+}
   }
 </style>
 </head>
 <body>
 
 <div class="background" id="background">
-  <button class="button button1" onclick="changeImage('최아들문자2.png')"></button>
-  <button class="button button2" onclick="changeImage('최아들문자.png')"></button>
+  <button class="button button1" onclick="window.open('gallery/gallery.html', '_self')"></button>
+  <button class="button button2" onclick="window.open('kakao/kakao.html', '_self')"></button>
+  <button class="button button3" onclick="showImage()"></button>
+  <button class="button button4" onclick="showAnotherImage()"></button>
   <button class="backButton" id="backButton" onclick="goBack()"></button>
 </div>
 
 <script>
-let previousImage = '최아들문자함.png'; // Initial background image
+let previousImage = '설신딸배경.PNG'; // Initial background image
 
-function changeImage(newImage) {
-  document.getElementById('background').style.backgroundImage = "url('" + newImage + "')";
-  document.getElementById('backButton').style.display = 'block'; // Show back button
+function showImage() {
+  const background = document.getElementById('background');
+  background.style.backgroundImage = "url('엄도움전화.png')";
+  background.classList.add('fadeIn'); // 애니메이션 클래스 추가
+  document.getElementById('backButton').style.display = 'block'; // 뒤로가기 버튼 표시
+  document.querySelector('.button1').style.display = 'none';
+  document.querySelector('.button2').style.display = 'none';
+  document.querySelector('.button3').style.display = 'none';
+  document.querySelector('.button4').style.display = 'none';
 }
+
+function showAnotherImage() {
+  const background = document.getElementById('background');
+  background.style.backgroundImage = "url('엄도움문자.png')";
+  background.classList.add('fadeIn'); // 애니메이션 클래스 추가
+  document.getElementById('backButton').style.display = 'block'; // 뒤로가기 버튼 표시
+  document.querySelector('.button1').style.display = 'none';
+  document.querySelector('.button2').style.display = 'none';
+  document.querySelector('.button3').style.display = 'none';
+  document.querySelector('.button4').style.display = 'none';
+}  
 
 function goBack() {
-  document.getElementById('background').style.backgroundImage = "url('" + previousImage + "')";
-  document.getElementById('backButton').style.display = 'none'; // Hide back button
+  const background = document.getElementById('background');
+  background.style.backgroundImage = "url('" + previousImage + "')";
+  background.classList.remove('fadeIn'); // 애니메이션 클래스 제거
+  document.getElementById('backButton').style.display = 'none'; // 뒤로가기 버튼 숨김
+  document.querySelector('.button1').style.display = 'block';
+  document.querySelector('.button2').style.display = 'block';
+  document.querySelector('.button3').style.display = 'block';
+  document.querySelector('.button4').style.display = 'block';
 }
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
